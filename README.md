@@ -2,6 +2,8 @@
 
 Esta é a documentação do projeto de segmentação de clientes, abaixo terá todos os detalhes do projeto.
 
+
+
 ## 1. Introdução
 
 * Objetivo do Projeto: O objetivo deste projeto é realizar a segmentação de clientes com base em seu comportamento, utilizando uma base de dados que contém informações detalhadas sobre as interações dos clientes com nossos produtos. Através desta segmentação, buscamos identificar grupos distintos de clientes com características e padrões de comportamento semelhantes.
@@ -37,19 +39,32 @@ Esta é a documentação do projeto de segmentação de clientes, abaixo terá t
 	*	Nota *(Ratings);*
 	*	Produtos *(products);*
 
- ## 2. Metodologia
 
-* Coleta e Pré-processamento dos Dados: Para analisar os dados de forma devidamente correta foi necessário tratar os dados em que continham campos nulos, assim tendo que:
 
-Converter o tipo de dados da coluna Data de object para datetime
-```
-base['Date'] = pd.to_datetime(base['Date'])
-```
-Conferir o tipo de dado Data após a alteração
-```
-print(base['Date'].dtype)
-```
-Excluir os valores nulos de Data
-```
-base = base.dropna(subset=['Date'])
-```
+## 2. Metodologia
+
+* Coleta e Pré-processamento dos Dados: Para analisar os dados de forma devidamente correta foram necessárias algumas ações, como:
+
+	* Importar bibliotecas:
+	```
+	import warnings
+	import numpy as np
+	import pandas as pd
+	import matplotlib.pyplot as plt
+	import seaborn as sns
+ 	```
+
+	* Identificar possíveis dados nulos:
+	```
+	base.isnull().sum()
+	```
+
+	* Tratar dados nulos:
+	```
+	> Converter o tipo de dados da coluna Data de object para datetime
+	base['Date'] = pd.to_datetime(base['Date'])
+	> Conferir o tipo de dado Data após a alteração
+	print(base['Date'].dtype)
+	> Excluir os valores nulos de Data
+	base = base.dropna(subset=['Date'])
+	```
