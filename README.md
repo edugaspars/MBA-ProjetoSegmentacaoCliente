@@ -68,3 +68,14 @@ Esta é a documentação do projeto de segmentação de clientes, abaixo terá t
 	> Excluir os valores nulos de Data
 	base = base.dropna(subset=['Date'])
 	```
+
+* Ferramentas Utilizadas: TO-DO
+
+* Métodos de Análise: Durante o projeto foram utilizadas algumas técnicas de análises, tanto escolhas pessoais como escolhas orientadas pelo professor, estas foram:
+ 	* Análise Exploratória;
+  	* LTV (Lifetime Value);
+   	* RFV (Recência, Frequência e Valor).
+
+
+
+## 3. Análise e Resultados
