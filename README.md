@@ -1,14 +1,14 @@
-# Projeto: Segmentação de clientes baseado no comportamento
+# Projeto: Segmentação de Clientes Baseado no Comportamento
 
-Esta é a documentação do projeto de segmentação de clientes, abaixo terá todos os detalhes do projeto.
+> Esta é a documentação do projeto em grupo da disciplina de **Real Data-Driven Business Project** do **MBA em Data Science & Advanced Analytics** na **Faculdade Impacta Tecnologia**, abaixo terá todos os detalhes do projeto.
 
 
 
 ## 1. Introdução
 
-* Objetivo do Projeto: O objetivo deste projeto é realizar a segmentação de clientes com base em seu comportamento, utilizando uma base de dados que contém informações detalhadas sobre as interações dos clientes com nossos produtos. Através desta segmentação, buscamos identificar grupos distintos de clientes com características e padrões de comportamento semelhantes.
+* **Objetivo do Projeto:** O objetivo deste projeto é realizar a segmentação de clientes com base em seu comportamento, utilizando uma base de dados que contém informações detalhadas sobre as interações dos clientes com nossos produtos. Através desta segmentação, buscamos identificar grupos distintos de clientes com características e padrões de comportamento semelhantes.
 
-*	Descrição da Base de Dados: A origem da base de dados se encontra disponível gratuitamente no [Kaggle](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data). É um arquivo .csv (de aproximadamente 85MB) com 30 colunas e 302.010 linhas. As colunas contêm:
+* **Descrição da Base de Dados:** A origem da base de dados se encontra disponível gratuitamente no [Kaggle](https://www.kaggle.com/datasets/sahilprajapati143/retail-analysis-large-dataset/data). É um arquivo .csv (de aproximadamente 85MB) com 30 colunas e 302.010 linhas. As colunas contêm:
 	*	ID da transação *(Transaction_ID);*
 	*	ID do cliente *(Customer_ID);*
 	*	Nome do cliente *(Name);*
@@ -43,7 +43,7 @@ Esta é a documentação do projeto de segmentação de clientes, abaixo terá t
 
 ## 2. Metodologia
 
-* Coleta e Pré-processamento dos Dados: Para analisar os dados de forma devidamente correta foram necessárias algumas ações, como:
+* **Coleta e Pré-processamento dos Dados:** Para analisar os dados de forma devidamente correta foram necessárias algumas ações, como:
 
 	* Importar bibliotecas:
 	```
@@ -69,9 +69,12 @@ Esta é a documentação do projeto de segmentação de clientes, abaixo terá t
 	base = base.dropna(subset=['Date'])
 	```
 
-* Ferramentas Utilizadas: TO-DO
+* **Ferramentas Utilizadas: TO-DO**
+	<!--* Microsoft Power BI;
+ 	* Python;
+  	* -->
 
-* Métodos de Análise: Durante o projeto foram utilizadas algumas técnicas de análises, tanto escolhas pessoais como escolhas orientadas pelo professor, estas foram:
+* **Métodos de Análise:** Durante o projeto foram utilizadas algumas técnicas de análises, tanto escolhas pessoais como escolhas orientadas pelo professor, estas foram:
  	* Análise Exploratória;
   	* LTV (Lifetime Value);
    	* RFV (Recência, Frequência e Valor).
@@ -79,3 +82,24 @@ Esta é a documentação do projeto de segmentação de clientes, abaixo terá t
 
 
 ## 3. Análise e Resultados
+
+* **Análise Exploratória dos Dados (EDA):** Abaixo terão gráficos derivados da análise exploratória do conteúdo da base.
+	* Gênero dos clientes do negócio:
+ 
+ 		![image](https://github.com/user-attachments/assets/45154e6e-e04b-44fc-9af5-76e520421fbb)
+
+ 	* Distribuição do valor total por gênero:
+ 
+ 		![image](https://github.com/user-attachments/assets/42f122ac-2481-4634-8731-19e43c41c882)
+
+  	* Distribuição de idade por gênero:
+
+  		![image](https://github.com/user-attachments/assets/27fb2d20-5eae-477f-998a-40eab140767a)
+
+  	* Distribuição do valor total por renda:
+
+  		![image](https://github.com/user-attachments/assets/2e442458-44e1-403e-a2ef-bf9def00765b)
+
+
+
+ 
