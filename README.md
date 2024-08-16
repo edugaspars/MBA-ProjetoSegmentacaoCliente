@@ -85,21 +85,49 @@
 
 * **Análise Exploratória dos Dados (EDA):** Abaixo terão gráficos derivados da análise exploratória do conteúdo da base.
 	* Gênero dos clientes do negócio:
- 
+ 		```
+   		plt.figure(figsize=(5, 3))
+		base.Gender.value_counts().plot(kind='bar', title='Genero',color = ['#1F77B4', '#FF3333']);
+   		```
  		![image](https://github.com/user-attachments/assets/45154e6e-e04b-44fc-9af5-76e520421fbb)
 
  	* Distribuição do valor total por gênero:
- 
+ 		```
+   		color = ['#FF3333', '#99FF33']
+		explode = (0.1, 0)
+		
+		plt.figure(figsize=(10, 6))
+		base.groupby('Gender')['Total_Amount'].sum().plot(kind='pie', autopct='%0.2f%%', colors=color, explode=explode)
+		plt.title('Distribuição do VALOR TOTAL por GENERO' , fontweight='bold')
+		plt.ylabel('')
+		plt.xlabel('')
+		plt.show()
+   		```
  		![image](https://github.com/user-attachments/assets/42f122ac-2481-4634-8731-19e43c41c882)
 
   	* Distribuição de idade por gênero:
-
+		```
+		plt.figure(figsize=(5, 3))
+		sns.violinplot(data=base, x='Age', y='Gender', orient='h', inner='quart')
+		plt.title('Distribuição de idade por Genero', fontweight='bold')
+		plt.xlabel('Idade')
+		plt.ylabel('Genero')
+		plt.show()
+  		```
   		![image](https://github.com/user-attachments/assets/27fb2d20-5eae-477f-998a-40eab140767a)
 
   	* Distribuição do valor total por renda:
-
+		```
+		color = ['#FF3333', '#99FF33', '#1F77B4']
+		explode = (0, 0, 0.1)
+		
+		plt.figure(figsize=(10, 6))
+		base.groupby('Income')['Total_Amount'].sum().plot(kind='pie', autopct='%0.2f%%', colors=color, explode=explode)
+		plt.title('Distribuição do VALOR TOTAL por RENDA' , fontweight='bold')
+		plt.ylabel('')
+		plt.xlabel('')
+		plt.show()
+  		```
   		![image](https://github.com/user-attachments/assets/2e442458-44e1-403e-a2ef-bf9def00765b)
 
 
-
- 
