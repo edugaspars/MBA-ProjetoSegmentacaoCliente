@@ -130,4 +130,72 @@
   		```
   		![image](https://github.com/user-attachments/assets/2e442458-44e1-403e-a2ef-bf9def00765b)
 
+	* Analíse das variáveis de País:
+	  	```
+		base.groupby(['Country']).size()
+	   	```
 
+	* Distribuição de Clientes por País
+ 		```
+		plt.figure(figsize=(5, 3))
+		base['Country'].value_counts().sort_values(ascending=False).plot(kind='bar', color = ['#1F77B4', '#99FF33', '#FF7F0E', '#FF3333', '#FF3333'])
+		plt.title('Distribuição de Clientes por País', fontweight='bold')
+		plt.xlabel('País')
+		plt.ylabel('Frequencia')
+		plt.xticks(rotation=45)
+		plt.show()
+   		```
+   		![image](https://github.com/user-attachments/assets/9ae72b4f-ff97-460d-aff2-962ec18a884f)
+
+	* Distribuição do Seguimento de Cliente por país:
+	 	```
+		color = ['#FF3333', '#FF3333', '#FF7F0E', '#99FF33', '#1F77B4']
+		explode = (0, 0, 0, 0.1, 0.1)
+		
+		plt.figure(figsize=(10, 6))
+		base.groupby('Country')['Total_Amount'].sum().plot(kind='pie', autopct='%0.2f%%', colors=color, explode=explode)
+		plt.title('Distribuição do Seguimento de Clinete' , fontweight='bold')
+		plt.ylabel('')
+		plt.xlabel('')
+		plt.show()
+	  	```
+	  	![image](https://github.com/user-attachments/assets/ebdb4a2e-19f9-4144-9e3d-34c4bca9a28c)
+
+	* Analise das variáveis de Seguimento de Cliente:
+   		```
+		base.groupby(['Customer_Segment']).size()
+		```
+ 		Customer_Segment
+		New         91070
+		Premium     64317
+		Regular    146049
+		dtype: int64
+
+	* Distribuição do Seguimento de Cliente:
+ 		```
+		color = ['#99FF33', '#FF3333', '#1F77B4']
+		explode = (0, 0, 0.1)
+		
+		plt.figure(figsize=(10, 6))
+		base.groupby('Customer_Segment')['Total_Amount'].sum().plot(kind='pie', autopct='%0.2f%%', colors=color, explode=explode)
+		plt.title('Distribuição do Seguimento de Clinete' , fontweight='bold')
+		plt.ylabel('')
+		plt.xlabel('')
+		plt.show()
+   		```
+		![image](https://github.com/user-attachments/assets/7b9d5358-7a77-41ca-889c-bae45a7df82e)
+
+   	* Período de Vendas:
+		```
+   		inicio = pd.to_datetime(base['Date']).dt.date.min()
+		fim = pd.to_datetime(base['Date']).dt.date.max()
+		print('Período dos dados - De:', inicio, 'Até:',fim)
+		```
+   		Período dos dados - De: 2023-03-01 Até: 2024-02-29
+
+	* Análise das Variáveis Ano:
+		```
+		plt.figure(figsize=(5, 3))
+		base.Year.value_counts().plot(kind='bar', title='Ano',color = ['#1F77B4', '#FF3333'])
+		```
+   		![image](https://github.com/user-attachments/assets/d51ac4d7-2f40-4dd1-82fd-51893cb59b61)
