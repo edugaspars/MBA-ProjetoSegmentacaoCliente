@@ -165,10 +165,10 @@
    		```
 		base.groupby(['Customer_Segment']).size()
 		```
- 		Customer_Segment
-		New         91070
-		Premium     64317
-		Regular    146049
+ 		Customer_Segment  
+		New         91070  
+		Premium     64317  
+		Regular    146049  
 		dtype: int64
 
 	* Distribuição do Seguimento de Cliente:
@@ -199,3 +199,93 @@
 		base.Year.value_counts().plot(kind='bar', title='Ano',color = ['#1F77B4', '#FF3333'])
 		```
    		![image](https://github.com/user-attachments/assets/d51ac4d7-2f40-4dd1-82fd-51893cb59b61)
+
+	* Análise das Variáveis Mês:
+   		```
+		base1 = pd.DataFrame(base.groupby(['Month']).size())
+		base1
+		```
+   		![image](https://github.com/user-attachments/assets/d76920f1-ab4c-4661-a052-79ff31af90a3)
+		```
+  		# Definindo a ordem dos meses
+  		month_order = ['March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', ]
+
+		# Convertendo a coluna 'Month' para tipo categórico com a ordem especificada
+		base['Month'] = pd.Categorical(base['Month'], categories=month_order, ordered=True)
+		
+		# Contando os valores e ordenando-os pela ordem dos meses
+		month_counts = base['Month'].value_counts().sort_index()
+		
+		# Plotando o gráfico
+		plt.figure(figsize=(5, 3))
+		month_counts.plot(kind='bar', color = ['#FF3333', '#1F77B4', '#FF7F0E', '#FF3333', '#99FF33', '#1F77B4', '#FF3333', '#FF3333', '#FF3333', '#FF3333', '#1F77B4'])
+		
+		plt.title('Distribuição de Compras por Mês', fontweight='bold')
+		plt.xlabel('Mês')
+		plt.ylabel('Frequência')
+		plt.xticks(rotation=45)
+		plt.show()
+		```
+  		![image](https://github.com/user-attachments/assets/7bafb383-ebdc-404e-83c5-38af6174e36f)
+
+	* Análise da variável de Total de Produtos por Transação:
+  		```
+		base.groupby(['Total_Purchases']).size()
+	 	```
+		Total_Purchases  
+		1.00     31833  
+   		2.00     31876  
+		3.00     31833  
+		4.00     31535  
+		5.00     31881  
+		6.00     28507  
+		7.00     28412  
+		8.00     28673  
+		9.00     28423  
+		10.00    28317  
+		dtype: int6
+  
+		```
+  		# Definindo a ordem dos Total_Purchases
+		quat_prod = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
+
+		# Convertendo a coluna 'Total_Purchases' para tipo categórico com a ordem especificada
+		base['Total_Purchases'] = pd.Categorical(base['Total_Purchases'], categories=quat_prod, ordered=True)
+		
+		# Contando os valores e ordenando-os pela ordem de quantidade de produto
+		Total_Purchases = base['Total_Purchases'].value_counts().sort_index()
+		# Contando os valores e ordenando-os pela ordem quantidade de itens
+		prod_counts = base['Total_Purchases'].value_counts().sort_index()
+		
+		# Plotando o gráfico
+		plt.figure(figsize=(5, 3))
+		prod_counts.plot(kind='bar', color = ['#1F77B4', '#1F77B4', '#1F77B4', '#99FF33', '#1F77B4', '#FF7F0E', '#FF7F0E', '#FF7F0E', '#FF7F0E', '#FF7F0E', '#FF7F0E'])
+		plt.title('Total de Produtos por Transação', fontweight='bold')
+		plt.xlabel('Quantidade de Produtos')
+		plt.ylabel('Frequência')
+		plt.xticks(rotation=45)
+		plt.show()
+ 		```
+		![image](https://github.com/user-attachments/assets/acbd03c2-12dd-4eba-bcf2-0ec73b072254)
+
+	* Análise da variável Feedback:
+		```
+  		plt.figure(figsize=(5, 3))
+		base.Feedback.value_counts().plot(kind='bar', title='Avaliações',color = ['#1F77B4', '#99FF33', '#FF7F0E', '#FF3333']);
+		```
+  		![image](https://github.com/user-attachments/assets/fd7c43e9-0e2b-4490-a0f2-0a54c410ac03)
+
+		```
+  		color = ['#FF7F0E', '#FF3333', '#1F77B4', '#99FF33']
+		explode = (0, 0, 0.1, 0)
+		
+		plt.figure(figsize=(10, 6))
+		base.groupby('Feedback')['Total_Amount'].sum().plot(kind='pie', autopct='%0.2f%%', colors=color, explode=explode)
+		plt.title('FeedBack' , fontweight='bold')
+		plt.ylabel('')
+		plt.xlabel('')
+		plt.show()
+		```
+  		![image](https://github.com/user-attachments/assets/02f36502-574f-40c3-955c-b2c913406a4b)
+
+   
