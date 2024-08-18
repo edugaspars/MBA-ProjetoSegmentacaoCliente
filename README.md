@@ -288,4 +288,142 @@
 		```
   		![image](https://github.com/user-attachments/assets/02f36502-574f-40c3-955c-b2c913406a4b)
 
-   
+* **Análise ML:**
+	* Criando e armazenando dados no Dataframe:
+		```
+		base_inteiros = base.select_dtypes(include = ['float64', 'int64'])
+		base_strings = base.select_dtypes(include = ['category', 'datetime64', 'object'])
+		```
+
+	* Preparação para aplicar as técnicas de Machine Learning:
+ 		```
+   		base['Total_Purchases'] = base['Total_Purchases'].astype(float)
+ 
+		from sklearn.preprocessing import LabelEncoder
+		# Cria o encoder
+		lb = LabelEncoder()
+		
+		# Aplica o encoder nas variáveis que estão com string
+		base['Name'] = lb.fit_transform(base['Name'])
+		base['Email'] = lb.fit_transform(base['Email'])
+		base['Address'] = lb.fit_transform(base['Address'])
+		base['City'] = lb.fit_transform(base['City'])
+		base['State'] = lb.fit_transform(base['State'])
+		base['Country'] = lb.fit_transform(base['Country'])
+		base['Gender'] = lb.fit_transform(base['Gender'])
+		base['Income'] = lb.fit_transform(base['Income'])
+		base['Customer_Segment'] = lb.fit_transform(base['Customer_Segment'])
+		base['Date'] = lb.fit_transform(base['Date'])
+		base['Month'] = lb.fit_transform(base['Month'])
+		base['Time'] = lb.fit_transform(base['Time'])
+		base['Product_Category'] = lb.fit_transform(base['Product_Category'])
+		base['Product_Brand'] = lb.fit_transform(base['Product_Brand'])
+		base['Product_Type'] = lb.fit_transform(base['Product_Type'])
+		base['Shipping_Method'] = lb.fit_transform(base['Shipping_Method'])
+		base['Payment_Method'] = lb.fit_transform(base['Payment_Method'])
+		base['Order_Status'] = lb.fit_transform(base['Order_Status'])
+		base['products'] = lb.fit_transform(base['products'])
+		base['Feedback'] = lb.fit_transform(base['Feedback'])
+		```
+ 	* Separando a variável-alvo:
+		```
+		target = base.iloc[:,24]
+		target.head()
+		```
+  		0    Excellent  
+		1    Excellent  
+		2      Average  
+		3    Excellent  
+		4          Bad  
+		Name: Feedback, dtype: object
+
+	* Separação das variáveis preditoras:
+ 		```
+		preditoras = base.copy() #Fazendo uma cópia do dataframe
+		
+		del preditoras['Feedback']
+		del preditoras['Email'] #Excluindo a variavel target, pois já separamos ela na etapa anterior
+		del preditoras['Name']
+		del preditoras['Phone']
+		del preditoras['Address']
+		del preditoras['Zipcode']
+		del preditoras['Date']
+		del preditoras['City']
+		del preditoras['Gender']
+		del preditoras['Income']
+		del preditoras['Customer_Segment']
+		del preditoras['Year']
+		del preditoras['Month']
+		del preditoras['Time']
+		del preditoras['Product_Type']
+		del preditoras['Shipping_Method']
+		del preditoras['Payment_Method']
+		del preditoras['Order_Status']
+		del preditoras['products']
+   		```
+
+   	* Criação de um gráfico de heatmap:
+		```
+   		import matplotlib.pyplot as plt
+		import seaborn as sns
+		
+		plt.figure(figsize=(24, 8))
+		corr_matrix = base.corr()
+		sns.heatmap(corr_matrix, annot=True, fmt=".2f")
+		plt.title('Matriz de Correlação')
+		plt.show()
+		
+		# Correlação específica com o preço de venda
+		corr_with_price = corr_matrix['Feedback'].sort_values(ascending=False)
+		print(corr_with_price)
+		```
+   		![image](https://github.com/user-attachments/assets/9a05087e-e18d-4bb6-86ac-c00ac6221d92)
+
+		Feedback            1.00  
+		Ratings             0.61  
+		Product_Brand       0.07  
+		Age                 0.05  
+		Product_Type        0.04  
+		Product_Category    0.03  
+		Month               0.02  
+		Gender              0.02  
+		Income              0.02  
+		Time                0.01  
+		Year                0.00  
+		Date                0.00  
+		Address             0.00  
+		Customer_ID         0.00  
+		Transaction_ID      0.00  
+		State              -0.00  
+		Name               -0.00  
+		Zipcode            -0.00  
+		Amount             -0.00  
+		Phone              -0.00  
+		Total_Amount       -0.00  
+		Total_Purchases    -0.00  
+		Email              -0.00  
+		Shipping_Method    -0.01  
+		products           -0.02  
+		Country            -0.02  
+		Customer_Segment   -0.03  
+		Order_Status       -0.05  
+		City               -0.05  
+		Payment_Method     -0.08  
+		Name: Feedback, dtype: float64
+
+	* Dividindo o conjunto de dados para modelo e para teste:
+		```
+  		from sklearn.model_selection import train_test_split
+		X_treino, X_teste, y_treino, y_teste = train_test_split(preditoras, target, test_size = 0.3, random_state = 40)
+  		```
+
+  	* Aplicando a normalização:
+		```
+  		from sklearn.preprocessing import MinMaxScaler
+		# Vamos aplicar a normalização em treino e teste
+		# Padronização
+		sc = MinMaxScaler()
+		X_treino_normalizados = sc.fit_transform(X_treino)
+		X_teste_normalizados = sc.transform(X_teste)
+		```
+  	
